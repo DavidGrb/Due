@@ -5,7 +5,7 @@ import java.util.List;
 public class Deck {
     public static void main(String[] args) {
         //test
-        Deck test = new Deck(3);
+        Deck test = new Deck(7);
         System.out.println(test);
     }
 
@@ -17,9 +17,7 @@ public class Deck {
         for (int i = 0; i < cards; i++) {
             int rndNum = (int) Math.floor(Math.random() * (9 - 0 + 1) + 0);
             int rndColor = (int) Math.floor(Math.random() * (3 - 0 + 1) + 0);
-
             deckCards.add(new Card(colors[rndColor], rndNum));
-
         }
     }
 
