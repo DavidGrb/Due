@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Game {
     public static final String RESET = "\033[0m";  // Text Reset
     public static final String RED = "\033[0;31m";     // RED
+    public static final String PURPLE_BOLD_BRIGHT = "\033[1;95m";// PURPLE
+
 
     public static void main(String[] args) {
         Game game = new Game();
@@ -25,7 +27,7 @@ public class Game {
         while (p1.deckCards.size() > 0) {
             System.out.println("\n" + "Karten von Spieler:\n" + p1 + "\n");
 
-            System.out.println(RED + "Oberste Karte" + RESET + "\n" + currentCard + "\n");
+            System.out.println(PURPLE_BOLD_BRIGHT + "Oberste Karte" + RESET + "\n" + currentCard + "\n");
             System.out.println("Willst du eine Karte legen (l) oder abheben(a)?");
             String choice = scanner.next();
             if (choice.equalsIgnoreCase("a")) {
