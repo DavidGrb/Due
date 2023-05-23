@@ -2,6 +2,9 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Game {
+    public static final String RESET = "\033[0m";  // Text Reset
+    public static final String RED = "\033[0;31m";     // RED
+
     public static void main(String[] args) {
         Game game = new Game();
         game.gameLoop();
@@ -19,9 +22,10 @@ public class Game {
         Deck p2 = new Deck(quantitty);
 
 
-        while (true) {
-            System.out.println("Karten von Spieler:\n" + p1);
-            System.out.println(currentCard);
+        while (p1.deckCards.size() > 0) {
+            System.out.println("\n" + "Karten von Spieler:\n" + p1 + "\n");
+
+            System.out.println(RED + "Oberste Karte" + RESET + "\n" + currentCard + "\n");
             System.out.println("Willst du eine Karte legen (l) oder abheben(a)?");
             String choice = scanner.next();
             if (choice.equalsIgnoreCase("a")) {
@@ -30,20 +34,22 @@ public class Game {
                 if (availableDeckCard(p1)) {
                     System.out.println("Welche Karte willst du legen?");
                     int numOfCard = scanner.nextInt();
-                    while (numOfCard < 1 && numOfCard > quantitty || (canThrowCard(p1.deckCards.get(numOfCard - 1)) == false)) {
+                    while (numOfCard < 1 && numOfCard > p1.deckCards.size() || (canThrowCard(p1.deckCards.get(numOfCard - 1)) == false)) {
                         System.out.println("Ungültige Zahl oder Karte! Gib neue Karte an!");
                         numOfCard = scanner.nextInt();
                     }
                     throwCard(p1, p1.deckCards.get(numOfCard - 1));
-                }
-                else{
-                    System.out.println("Du hast keine verfügbaren Karten zum spielen! Heb eine Karte ab!");
+                } else {
+                    System.out.println("\n" + RED + "Du hast keine verfügbaren Karten zum spielen! Heb eine Karte ab!" + RESET + "\n");
                 }
             }
         }
-
+        if (p1.deckCards.size() == 0) {
+            System.out.println("Spieler 1 hat gewonnen!");
+        } else {
+            System.out.println("Computer hat gewonnen!");
+        }
     }
-
 
     public boolean canThrowCard(Card card) {
         if (card.getColor().equals(currentCard.getColor()) || card.getNumber() == currentCard.getNumber()) {
