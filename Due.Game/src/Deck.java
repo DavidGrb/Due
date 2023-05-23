@@ -15,8 +15,8 @@ public class Deck {
     public Deck(int cards) {
         //füllt ein deck mit zufällig generierten karten
         for (int i = 0; i < cards; i++) {
-            int rndNum = (int) Math.floor(Math.random() * (9 - 0 + 1) + 0);
-            int rndColor = (int) Math.floor(Math.random() * (3 - 0 + 1) + 0);
+            int rndNum = (int) Math.floor(Math.random() * (9 + 1));
+            int rndColor = (int) Math.floor(Math.random() * (3 + 1));
             deckCards.add(new Card(colors[rndColor], rndNum));
         }
     }
@@ -27,6 +27,6 @@ public class Deck {
         return "Deck{" +
                 "deckCards=" + deckCards +
                 ", " +
-        '}';
+                '}';
     }
 }
