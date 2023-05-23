@@ -22,4 +22,12 @@ public class Card {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "color='" + color + '\'' +
+                ", number=" + number +
+                '}';
+    }
 }
