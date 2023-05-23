@@ -23,16 +23,22 @@ public class Game {
     }
 
     public void throwCard(Deck deck, Card card){
-
         currentCard = card;
-
+        deck.deckCards.remove(card);
     }
 
     public void pickUpCard(Deck deck){
         deck.deckCards.add(new Deck(1).deckCards.get(0));
     }
 
-    public
+    public void throwAvailableCard(Deck deck){
+        for (int i = 0; i < deck.deckCards.size(); i++) {
+            if(canThrowCard(deck.deckCards.get(i))){
+                throwCard(deck,deck.deckCards.get(i));
+            }
+        }
+
+    }
 
 
 
