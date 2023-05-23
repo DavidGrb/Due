@@ -24,9 +24,6 @@ public class Deck {
 
     @Override
     public String toString() {
-        return "Deck{" +
-                "deckCards=" + deckCards +
-                ", " +
-                '}';
+        return deckCards + "";
     }
 }
