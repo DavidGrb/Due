@@ -23,6 +23,7 @@ public class Game {
     }
 
     public void throwCard(Deck deck, Card card){
+
         currentCard = card;
 
     }
