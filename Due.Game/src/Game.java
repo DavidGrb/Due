@@ -23,33 +23,50 @@ public class Game {
         Deck p1 = new Deck(quantitty);
         Deck p2 = new Deck(quantitty);
 
+        Deck p = new Deck(quantitty);
 
-        while (p1.deckCards.size() > 0) {
-            System.out.println("\n" + "Karten von Spieler:\n" + p1 + "\n");
+        int currentPlayer = 1;
+
+        while (p.deckCards.size() > 0) {
+
+            if (currentPlayer < 0) {
+                p = p1;
+                System.out.println("\n" + "Karten von Spieler 2:\n" + p + "\n");
+            } else {
+                p = p2;
+                System.out.println("\n" + "Karten von Spieler 1:\n" + p + "\n");
+            }
+
+
 
             System.out.println(PURPLE_BOLD_BRIGHT + "Oberste Karte" + RESET + "\n" + currentCard + "\n");
             System.out.println("Willst du eine Karte legen (l) oder abheben(a)?");
+
             String choice = scanner.next();
             if (choice.equalsIgnoreCase("a")) {
-                pickUpCard(p1);
+                pickUpCard(p);
             } else if (choice.equalsIgnoreCase("l")) {
-                if (availableDeckCard(p1)) {
+                if (availableDeckCard(p)) {
                     System.out.println("Welche Karte willst du legen?");
                     int numOfCard = scanner.nextInt();
-                    while (numOfCard < 1 && numOfCard > p1.deckCards.size() || (canThrowCard(p1.deckCards.get(numOfCard - 1)) == false)) {
+                    while (numOfCard < 1 && numOfCard > p.deckCards.size() || (canThrowCard(p.deckCards.get(numOfCard - 1)) == false)) {
                         System.out.println("Ungültige Zahl oder Karte! Gib neue Karte an!");
                         numOfCard = scanner.nextInt();
                     }
-                    throwCard(p1, p1.deckCards.get(numOfCard - 1));
+                    throwCard(p, p.deckCards.get(numOfCard - 1));
+                    currentPlayer *= -1;
                 } else {
                     System.out.println("\n" + RED + "Du hast keine verfügbaren Karten zum spielen! Heb eine Karte ab!" + RESET + "\n");
                 }
             }
+
         }
+
+
         if (p1.deckCards.size() == 0) {
             System.out.println("Spieler 1 hat gewonnen!");
         } else {
-            System.out.println("Computer hat gewonnen!");
+            System.out.println("Spieler 2 hat gewonnen!");
         }
     }
 
