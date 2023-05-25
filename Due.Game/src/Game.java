@@ -49,8 +49,8 @@ public class Game {
                 if (availableDeckCard(p)) {
                     System.out.println("Welche Karte willst du legen?");
                     int numOfCard = scanner.nextInt();
-                    while (numOfCard < 1 && numOfCard > p.deckCards.size() || (canThrowCard(p.deckCards.get(numOfCard - 1)) == false)) {
-                        System.out.println("Ungültige Zahl oder Karte! Gib neue Karte an!");
+                    while (numOfCard < 1 || numOfCard > p.deckCards.size() || (canThrowCard(p.deckCards.get(numOfCard - 1)) == false)) {
+                        System.out.println(RED+"Ungültige Zahl oder Karte! Gib neue Karte an!"+RESET);
                         numOfCard = scanner.nextInt();
                     }
                     throwCard(p, p.deckCards.get(numOfCard - 1));
@@ -64,9 +64,9 @@ public class Game {
 
 
         if (p1.deckCards.size() == 0) {
-            System.out.println("Spieler 1 hat gewonnen!");
-        } else {
             System.out.println("Spieler 2 hat gewonnen!");
+        } else {
+            System.out.println("Spieler 1 hat gewonnen!");
         }
     }
 
