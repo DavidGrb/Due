@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 
 public class dueGameFormApplication extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public  void start(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("dueGame.fxml"));
-        primaryStage.setTitle("dueGame FXML Application");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+       Scene scene1 = new Scene(root);
+       stage.setScene(scene1);
+       stage.show();
     }
 
 
