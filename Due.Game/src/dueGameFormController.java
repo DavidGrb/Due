@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 import javafx.util.Duration;
 
 public class dueGameFormController {
@@ -19,8 +18,7 @@ public class dueGameFormController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    //wenn 1 dann player1 wenn -1 dann player2
-    private int currentPlayer = 1;
+    private static int currentPlayer = 1;
 
 
     @FXML
@@ -52,7 +50,6 @@ public class dueGameFormController {
             }
         }));
         timeline.play();
-
     }
 
     public void switchScenelayoutPlayers() throws Exception {
@@ -72,7 +69,6 @@ public class dueGameFormController {
                 playersController.saveCardsPlayers();
                 hasHappened1 = true;
             }
-
             // Setzen der Event Handler für die Buttons
             playersController.setButtonHandlers();
         } else if (currentPlayer == -1) {
@@ -91,12 +87,9 @@ public class dueGameFormController {
                 player2Controller.saveCardsPlayers();
                 hasHappened2 = true;
             }
-
             // Setzen der Event Handler für die Buttons
             player2Controller.setButtonHandlers();
-
         }
-
     }
 
     //Logik
@@ -155,6 +148,4 @@ public class dueGameFormController {
             }
         }
     }
-
-
 }
