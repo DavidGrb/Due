@@ -1,3 +1,5 @@
+import javafx.scene.control.Button;
+
 public class Card {
     private String color;
     private int number;
@@ -5,6 +7,12 @@ public class Card {
     public Card(String color, int number) {
         this.color = color;
         this.number = number;
+    }
+
+    public Button getButton() {
+        Button button = new Button();
+        button.setText(toString());
+        return button;
     }
 
     public String getColor() {
@@ -24,7 +32,7 @@ public class Card {
     }
 
     @Override
-    public String toString() {
+    public  String toString() {
         return color + " " + number;
     }
 }

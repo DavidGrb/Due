@@ -8,9 +8,9 @@ public class dueGameFormApplication extends Application {
     @Override
     public  void start(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("dueGame.fxml"));
-       Scene scene1 = new Scene(root);
-       stage.setScene(scene1);
-       stage.show();
+        Scene scene1 = new Scene(root);
+        stage.setScene(scene1);
+        stage.show();
     }
 
 
