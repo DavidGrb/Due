@@ -1,3 +1,5 @@
+import com.sun.tools.jconsole.JConsoleContext;
+import com.sun.tools.jconsole.JConsolePlugin;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -8,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -18,9 +22,9 @@ import java.util.List;
 public class dueGameFormController {
 
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    private static Stage stage;
+    private static Scene scene;
+    private static Parent root;
     private static int currentPlayer = 1;
 
 
@@ -169,11 +173,30 @@ public class dueGameFormController {
     public void handleButtonClicked(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
 
+        stack.getChildren().add(clickedButton);
+        System.out.println(stack.getChildren());
+
+        currentCard = clickedButton.getText();
+
         // Den Button aus dem GridPane entfernen
-        kartenPlayer1.getChildren().remove(clickedButton);
+
+        if(currentPlayer == 1){
+            kartenPlayer1.getChildren().remove(clickedButton);
+            cardsPlayer1 = new ArrayList<>();
+            for (Node node : kartenPlayer1.getChildren()) {
+                String[] attribs = ((Button) node).getText().split(" ");
+                cardsPlayer1.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+            }
+        }else{
+            kartenPlayer2.getChildren().remove(clickedButton);
+            cardsPlayer2 = new ArrayList<>();
+            for (Node node : kartenPlayer2.getChildren()) {
+                String[] attribs = ((Button) node).getText().split(" ");
+                cardsPlayer2.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+            }
+        }
 
         // Den Button dem StackPane hinzufügen
-        stack.getChildren().add(clickedButton);
         changePlayer();
         try {
             switchScenelookAway(event);
