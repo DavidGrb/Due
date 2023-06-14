@@ -144,6 +144,17 @@ public class dueGameFormController {
 
     String[] colors = {"Red", "Blue", "Green", "Yellow"};
 
+    public boolean canThrowCard(Button card){
+        String cardColor = card.getText().split(" ")[0];
+        int cardNumber = Integer.parseInt(card.getText().split(" ")[1]);
+
+        if(cardColor.equals(currentCard.split(" ")[0]) || cardNumber == Integer.parseInt(currentCard.split(" ")[1])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     @FXML
     public void saveCardsPlayers() {
@@ -183,39 +194,45 @@ public class dueGameFormController {
 
     @FXML
     public void handleButtonClicked(ActionEvent event) {
+
         Button clickedButton = (Button) event.getSource();
 
-        stack.getChildren().add(clickedButton);
-        System.out.println(stack.getChildren());
+       if (canThrowCard(clickedButton)){
+           stack.getChildren().add(clickedButton);
+           System.out.println(stack.getChildren());
 
-        currentCard = clickedButton.getText();
+           currentCard = clickedButton.getText();
 
-        // Den Button aus dem GridPane entfernen
+           // Den Button aus dem GridPane entfernen
 
-        if(currentPlayer == 1){
-            kartenPlayer1.getChildren().remove(clickedButton);
-            cardsPlayer1 = new ArrayList<>();
-            for (Node node : kartenPlayer1.getChildren()) {
-                String[] attribs = ((Button) node).getText().split(" ");
-                cardsPlayer1.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
-            }
-        }else{
-            kartenPlayer2.getChildren().remove(clickedButton);
-            cardsPlayer2 = new ArrayList<>();
-            for (Node node : kartenPlayer2.getChildren()) {
-                String[] attribs = ((Button) node).getText().split(" ");
-                cardsPlayer2.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
-            }
-        }
+           if(currentPlayer == 1){
+               kartenPlayer1.getChildren().remove(clickedButton);
+               cardsPlayer1 = new ArrayList<>();
+               for (Node node : kartenPlayer1.getChildren()) {
+                   String[] attribs = ((Button) node).getText().split(" ");
+                   cardsPlayer1.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+               }
+           }else{
+               kartenPlayer2.getChildren().remove(clickedButton);
+               cardsPlayer2 = new ArrayList<>();
+               for (Node node : kartenPlayer2.getChildren()) {
+                   String[] attribs = ((Button) node).getText().split(" ");
+                   cardsPlayer2.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+               }
+           }
 
-        // Den Button dem StackPane hinzufügen
-        changePlayer();
-        try {
-            switchScenelookAway(event);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+           // Den Button dem StackPane hinzufügen
+           changePlayer();
+           try {
+               switchScenelookAway(event);
+           } catch (Exception e) {
+               throw new RuntimeException(e);
+           }
+       }
+
+
     }
+
 
     public void setButtonHandlers() {
         if(currentPlayer == 1){
