@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dueGameFormController">
+   <children>
+      <Text fx:id="textPlayerWarning" layoutX="179.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler 2 ist an der Reihe, Spieler 1 schau weg" />
+      <Text layoutX="228.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="...in 3 Sekunden geht es los" />
+   </children>
+</AnchorPane>
