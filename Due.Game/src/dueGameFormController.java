@@ -27,6 +27,12 @@ public class dueGameFormController {
     private static Parent root;
     private static int currentPlayer = 1;
 
+    @FXML
+    private Text textPlayerWarning;
+
+    private static Text textPlayerWarning1 = new Text("Player 2, please look away!");
+    private static Text textPlayerWarning2 = new Text("Player 1, please look away!");
+
 
     @FXML
     private GridPane kartenPlayer1;
@@ -57,13 +63,19 @@ public class dueGameFormController {
         return currentCard;
     }
 
+
     @FXML
     public void switchScenelookAway(ActionEvent event) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("lookAway.fxml"));
+        if(currentPlayer == 1){
+            root = FXMLLoader.load(getClass().getResource("lookAway.fxml"));
+        }else{
+            root = FXMLLoader.load(getClass().getResource("lookAway2.fxml"));
+        }
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
 
         Duration delay = Duration.seconds(3);
         Timeline timeline = new Timeline(new KeyFrame(delay, event1 -> {
