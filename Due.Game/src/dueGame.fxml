@@ -33,7 +33,7 @@
                         <Font size="53.0" />
                     </font>
                 </Text>
-                <Button mnemonicParsing="false" onAction="#switchScenelookAway" onMouseClicked="#saveCardsPlayers" text="Play" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+                <Button mnemonicParsing="false" onAction="#switchScenelookAway" onMouseClicked="#saveCardsPlayers" text="Spielen" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
             </children>
         </GridPane>
     </children>

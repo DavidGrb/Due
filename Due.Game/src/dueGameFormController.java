@@ -22,18 +22,10 @@ import java.util.List;
 
 public class dueGameFormController {
 
-
     private static Stage stage;
     private static Scene scene;
     private static Parent root;
     private static int currentPlayer = 1;
-
-    @FXML
-    private Text textPlayerWarning;
-
-    private static Text textPlayerWarning1 = new Text("Player 2, please look away!");
-    private static Text textPlayerWarning2 = new Text("Player 1, please look away!");
-
 
     @FXML
     private GridPane kartenPlayer1;
@@ -57,7 +49,7 @@ public class dueGameFormController {
 
     //erstellt die Stack-Karte am Anfang
     public static String createStackCard(){
-        String[] colors = {"Red", "Blue", "Green", "Yellow"};
+        String[] colors = {"Rot", "Blau", "Grün", "Geld"};
         int rndNum = (int) Math.floor(Math.random() * (9 + 1));
         int rndColor = (int) Math.floor(Math.random() * (3 + 1));
         currentCard = colors[rndColor] +" "+rndNum;
@@ -152,7 +144,7 @@ public class dueGameFormController {
 
     //Logik
 
-    String[] colors = {"Red", "Blue", "Green", "Yellow"};
+    String[] colors = {"Rot", "Blau", "Grün", "Gelb"};
 
     public boolean canThrowCard(Button card){
         String cardColor = card.getText().split(" ")[0];
@@ -170,7 +162,7 @@ public class dueGameFormController {
     public void saveCardsPlayers() {
         //füllt ein deck mit zufällig generierten karten
         if(currentPlayer == 1){
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 7; i++) {
                 int rndNum = (int) Math.floor(Math.random() * (9 + 1));
                 int rndColor = (int) Math.floor(Math.random() * (3 + 1));
                 cardsPlayer1.add(new Card(colors[rndColor], rndNum));
@@ -220,9 +212,7 @@ public class dueGameFormController {
 
     @FXML
     public void handleButtonClicked(ActionEvent event) {
-
         Button clickedButton = (Button) event.getSource();
-
 
        if (canThrowCard(clickedButton)){
            stack.getChildren().add(clickedButton);
@@ -294,7 +284,5 @@ public class dueGameFormController {
                 }
             }
         }
-
-
     }
 }
