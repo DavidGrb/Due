@@ -49,7 +49,7 @@ public class dueGameFormController {
 
     //erstellt die Stack-Karte am Anfang
     public static String createStackCard(){
-        String[] colors = {"Rot", "Blau", "Grün", "Geld"};
+        String[] colors = {"Rot", "Blau", "Grün", "Gelb"};
         int rndNum = (int) Math.floor(Math.random() * (9 + 1));
         int rndColor = (int) Math.floor(Math.random() * (3 + 1));
         currentCard = colors[rndColor] +" "+rndNum;
