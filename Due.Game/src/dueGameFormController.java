@@ -67,12 +67,14 @@ public class dueGameFormController {
 
     @FXML
     public void switchScenelookAway(ActionEvent event) throws Exception {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (currentPlayer == 1) {
             root = FXMLLoader.load(getClass().getResource("lookAway.fxml"));
         } else {
             root = FXMLLoader.load(getClass().getResource("lookAway2.fxml"));
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        System.out.println( ((Node) event.getSource()));
+
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -167,7 +169,7 @@ public class dueGameFormController {
     public void saveCardsPlayers() {
         //füllt ein deck mit zufällig generierten karten
         if (currentPlayer == 1) {
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 2; i++) {
                 int rndNum = (int) Math.floor(Math.random() * (9 + 1));
                 int rndColor = (int) Math.floor(Math.random() * (3 + 1));
                 cardsPlayer1.add(new Card(colors[rndColor], rndNum));
@@ -205,20 +207,22 @@ public class dueGameFormController {
         Button clickedButton = (Button) event.getSource();
 
         if (canThrowCard(clickedButton)) {
-            stack.getChildren().add(clickedButton);
-            System.out.println(stack.getChildren());
+
 
             currentCard = clickedButton.getText();
 
             // Den Button aus dem GridPane entfernen
 
             if (currentPlayer == 1) {
-                kartenPlayer1.getChildren().remove(clickedButton);
+
                 cardsPlayer1 = new ArrayList<>();
                 for (Node node : kartenPlayer1.getChildren()) {
-                    String[] attribs = ((Button) node).getText().split(" ");
-                    cardsPlayer1.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+                    if((Button) node != clickedButton) {
+                        String[] attribs = ((Button) node).getText().split(" ");
+                        cardsPlayer1.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+                    }
                 }
+                System.out.println(noCardsleft());
                 if (noCardsleft()) {
                     try {
                         switchSceneWinner(event);
@@ -227,11 +231,12 @@ public class dueGameFormController {
                     }
                 }
             } else {
-                kartenPlayer2.getChildren().remove(clickedButton);
                 cardsPlayer2 = new ArrayList<>();
                 for (Node node : kartenPlayer2.getChildren()) {
-                    String[] attribs = ((Button) node).getText().split(" ");
-                    cardsPlayer2.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+                    if((Button) node != clickedButton) {
+                        String[] attribs = ((Button) node).getText().split(" ");
+                        cardsPlayer2.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
+                    }
                 }
                 if (noCardsleft()) {
                     try {
@@ -243,9 +248,10 @@ public class dueGameFormController {
             }
 
             // Den Button dem StackPane hinzufügen
-            changePlayer();
+
             if (!noCardsleft()) {
                 try {
+                    changePlayer();
                     switchScenelookAway(event);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
