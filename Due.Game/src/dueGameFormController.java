@@ -167,7 +167,7 @@ public class dueGameFormController {
     public void saveCardsPlayers() {
         //füllt ein deck mit zufällig generierten karten
         if (currentPlayer == 1) {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 7; i++) {
                 int rndNum = (int) Math.floor(Math.random() * (9 + 1));
                 int rndColor = (int) Math.floor(Math.random() * (3 + 1));
                 cardsPlayer1.add(new Card(colors[rndColor], rndNum));
@@ -198,23 +198,6 @@ public class dueGameFormController {
             }
         }
     }
-
-    public boolean noCardsleft() {
-        if (currentPlayer == 1) {
-            if (cardsPlayer1.size() == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            if (cardsPlayer2.size() == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
 
     @FXML
     public void handleButtonClicked(ActionEvent event) {
@@ -269,6 +252,8 @@ public class dueGameFormController {
                 }
             }
         }
+
+
     }
 
 
@@ -286,6 +271,24 @@ public class dueGameFormController {
                     Button button = (Button) node;
                     button.setOnAction(this::handleButtonClicked);
                 }
+            }
+        }
+
+
+    }
+
+    public boolean noCardsleft() {
+        if (currentPlayer == 1) {
+            if (cardsPlayer1.size() == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (cardsPlayer2.size() == 0) {
+                return true;
+            } else {
+                return false;
             }
         }
     }
