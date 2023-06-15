@@ -26,7 +26,7 @@
         </rowConstraints>
     </GridPane>
     <Text layoutX="280.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Layout2" />
-    <Button fx:id="abhebenButton" layoutX="269.0" layoutY="144.0" mnemonicParsing="false" text="Abheben" />
+    <Button fx:id="abhebenButton" layoutX="269.0" layoutY="144.0" mnemonicParsing="false" text="Abheben" onAction="#addRandomCard" />
     <StackPane fx:id="stack" layoutY="-1.0" prefHeight="98.0" prefWidth="131.0" />
     <HBox alignment="CENTER" layoutY="200.0" prefHeight="40.0" prefWidth="602.0">
         <children>

@@ -29,10 +29,7 @@ public class dueGameFormController {
     private static int currentPlayer = 1;
 
     @FXML
-    private Text textPlayerWarning;
-
-    private static Text textPlayerWarning1 = new Text("Player 2, please look away!");
-    private static Text textPlayerWarning2 = new Text("Player 1, please look away!");
+    private static Button abhebeButton;
 
 
     @FXML
@@ -73,7 +70,7 @@ public class dueGameFormController {
         } else {
             root = FXMLLoader.load(getClass().getResource("lookAway2.fxml"));
         }
-        System.out.println( ((Node) event.getSource()));
+        System.out.println(((Node) event.getSource()));
 
         scene = new Scene(root);
         stage.setScene(scene);
@@ -169,7 +166,7 @@ public class dueGameFormController {
     public void saveCardsPlayers() {
         //füllt ein deck mit zufällig generierten karten
         if (currentPlayer == 1) {
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 7; i++) {
                 int rndNum = (int) Math.floor(Math.random() * (9 + 1));
                 int rndColor = (int) Math.floor(Math.random() * (3 + 1));
                 cardsPlayer1.add(new Card(colors[rndColor], rndNum));
@@ -217,7 +214,7 @@ public class dueGameFormController {
 
                 cardsPlayer1 = new ArrayList<>();
                 for (Node node : kartenPlayer1.getChildren()) {
-                    if((Button) node != clickedButton) {
+                    if ((Button) node != clickedButton) {
                         String[] attribs = ((Button) node).getText().split(" ");
                         cardsPlayer1.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
                     }
@@ -233,7 +230,7 @@ public class dueGameFormController {
             } else {
                 cardsPlayer2 = new ArrayList<>();
                 for (Node node : kartenPlayer2.getChildren()) {
-                    if((Button) node != clickedButton) {
+                    if ((Button) node != clickedButton) {
                         String[] attribs = ((Button) node).getText().split(" ");
                         cardsPlayer2.add(new Card(attribs[0], Integer.parseInt(attribs[1])));
                     }
@@ -258,8 +255,6 @@ public class dueGameFormController {
                 }
             }
         }
-
-
     }
 
 
@@ -279,8 +274,28 @@ public class dueGameFormController {
                 }
             }
         }
+    }
 
+    @FXML
+    public void addRandomCard(ActionEvent event) {
+        // Zufällige Karte generieren
+        int rndNum = (int) Math.floor(Math.random() * (9 + 1));
+        int rndColor = (int) Math.floor(Math.random() * (3 + 1));
+        Card randomCard = new Card(colors[rndColor], rndNum);
 
+        // Karte zur entsprechenden Spielerliste hinzufügen
+        if (currentPlayer == 1) {
+            cardsPlayer1.add(randomCard);
+        } else {
+            cardsPlayer2.add(randomCard);
+        }
+
+        // Karte dem GridPane hinzufügen
+        if (currentPlayer == 1) {
+            kartenPlayer1.add(randomCard.getButton(), cardsPlayer1.size() - 1, 0);
+        } else {
+            kartenPlayer2.add(randomCard.getButton(), cardsPlayer2.size() - 1, 0);
+        }
     }
 
     public boolean noCardsleft() {
